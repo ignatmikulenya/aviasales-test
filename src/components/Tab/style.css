@@ -1,0 +1,30 @@
+.tab {
+  flex-grow: 1;
+
+  padding: 15px 0;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.5px;
+
+  background-color: white;
+
+  cursor: pointer;
+}
+
+.tab:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.tab:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.tab--selected {
+  color: white;
+  background-color: #2196f3;
+}

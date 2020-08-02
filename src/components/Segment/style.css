@@ -1,0 +1,27 @@
+.segment {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+
+.segment:last-child {
+  margin-bottom: 0;
+}
+
+.segment-item {
+  font-weight: 600;
+}
+
+.segment-item__title {
+  font-size: 12px;
+  line-height: 18px;
+  text-transform: uppercase;
+
+  color: #a0b0b9;
+}
+
+.segment-item__value {
+  font-size: 14px;
+  line-height: 21px;
+}

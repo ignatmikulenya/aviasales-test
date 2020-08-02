@@ -1,8 +1,14 @@
 import React from "react";
-import "./App.css";
+
+import Container from "./components/Container";
+import { Booking } from "./containers/Booking";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <Container>
+      <Booking />
+    </Container>
+  );
 }
 
 export default App;

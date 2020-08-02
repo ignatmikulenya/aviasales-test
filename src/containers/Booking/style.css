@@ -1,0 +1,17 @@
+.booking {
+  display: flex;
+}
+
+.booking__filter {
+  width: 232px;
+
+  margin-right: 20px;
+}
+
+.booking__result {
+  width: 502px;
+}
+
+.booking__tabs {
+  margin-bottom: 20px;
+}

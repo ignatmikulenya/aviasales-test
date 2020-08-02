@@ -1,0 +1,36 @@
+.checkbox__input {
+  display: none;
+}
+
+.checkbox__text {
+  display: flex;
+  align-items: center;
+
+  font-size: 13px;
+  line-height: 20px;
+
+  cursor: pointer;
+}
+
+.checkbox__text::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+
+  margin-right: 10px;
+
+  border: 1px solid #9abbce;
+  border-radius: 2px;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.checkbox__input:checked + .checkbox__text::before {
+  border-color: #2196f3;
+
+  background-image: url("/checkmark.svg");
+}

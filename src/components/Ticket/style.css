@@ -1,0 +1,32 @@
+.ticket {
+  display: grid;
+  grid-template: auto auto auto / 141px 141px 141px;
+  grid-template-areas:
+    "price . logo"
+    "route-from duration-from stops-from"
+    "route-to duration-to stops-to";
+  gap: 10px 20px;
+
+  padding: 26px 20px 20px;
+
+  border-radius: 5px;
+  background-color: white;
+}
+
+.ticket__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ticket__price {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  color: #2196f3;
+}
+
+.ticket__logo {
+}
