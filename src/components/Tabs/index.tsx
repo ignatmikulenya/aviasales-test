@@ -3,14 +3,14 @@ import classnames from "classnames";
 
 import Tab from "../Tab";
 
-import { Option } from "../../types/option";
+import { TOption } from "../../types/option";
 
 import "./style.css";
 
 type Props = {
   selectedIndex: number;
-  options: Option[];
-  onClick: (option: Option) => void;
+  options: TOption[];
+  onClick: (option: TOption) => void;
   className?: string;
 };
 

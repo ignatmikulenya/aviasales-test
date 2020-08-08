@@ -1,6 +1,6 @@
 import React from "react";
 
-import ITicket from "../../services/api-interfaces/ticket";
+import ITicket from "../../api-interfaces/ticket";
 
 import Segment from "../Segment";
 import Logo from "../../assets/s7-logo.png";

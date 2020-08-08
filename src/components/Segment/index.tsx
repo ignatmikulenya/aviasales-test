@@ -1,6 +1,6 @@
 import React from "react";
 
-import ISegment from "../../services/api-interfaces/segment";
+import ISegment from "../../api-interfaces/segment";
 
 import { getRouteTime, getDuration } from "../../utils/date-helper";
 

@@ -1,17 +1,17 @@
-.booking {
+.board {
   display: flex;
 }
 
-.booking__filter {
+.board__filter {
   width: 232px;
 
   margin-right: 20px;
 }
 
-.booking__result {
+.board__result {
   width: 502px;
 }
 
-.booking__tabs {
+.board__tabs {
   margin-bottom: 20px;
 }

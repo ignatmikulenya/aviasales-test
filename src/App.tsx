@@ -1,12 +1,12 @@
 import React from "react";
 
 import Container from "./components/Container";
-import { Booking } from "./containers/Booking";
+import Board from "./pages/Board";
 
 function App() {
   return (
     <Container>
-      <Booking />
+      <Board />
     </Container>
   );
 }

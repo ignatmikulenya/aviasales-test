@@ -2,14 +2,14 @@ import React from "react";
 
 import Checkbox from "../Checkbox";
 
-import { Option } from "../../types/option";
+import { TOption } from "../../types/option";
 
 import "./style.css";
 
 type Props = {
   activeOptions: string[];
-  options: Option[];
-  onChange: (option: Option) => void;
+  options: TOption[];
+  onChange: (option: TOption) => void;
 };
 
 export default function Filter({ activeOptions, options, onChange }: Props) {

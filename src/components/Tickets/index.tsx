@@ -1,6 +1,6 @@
 import React from "react";
 
-import ITicket from "../../services/api-interfaces/ticket";
+import ITicket from "../../api-interfaces/ticket";
 
 import Ticket from "../Ticket";
 
