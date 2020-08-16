@@ -3,20 +3,41 @@ import React from "react";
 import ITicket from "../../api-interfaces/ticket";
 
 import Segment from "../Segment";
-import Logo from "../../assets/s7-logo.png";
+import Skeleton from "../Skeleton";
 
 import "./style.css";
 
 type Props = {
-  ticket: ITicket;
+  isSkeleton?: boolean;
+  ticket?: ITicket;
 };
 
-export default function Ticket({ ticket }: Props) {
+export default function Ticket({ isSkeleton, ticket }: Props) {
+  if (isSkeleton || !ticket) {
+    return (
+      <li className="ticket">
+        <div className="ticket__header">
+          <p className="ticket__price">
+            <Skeleton height="24px" />
+          </p>
+          <Skeleton height="36px" className="ticket__logo" />
+        </div>
+        {Array.from(Array(2)).map((_, i) => (
+          <Segment key={i} isSkeleton />
+        ))}
+      </li>
+    );
+  }
+
   return (
     <li className="ticket">
       <div className="ticket__header">
-        <p className="ticket__price">{ticket.price}</p>
-        <img src={Logo} alt="Логотип" className="ticket__logo" />
+        <p className="ticket__price">{ticket.price} р</p>
+        <img
+          src={`http://pics.avs.io/99/36/${ticket.carrier}.png`}
+          alt="Логотип"
+          className="ticket__logo"
+        />
       </div>
       {ticket.segments.map((segment, id) => (
         <Segment key={id} segment={segment} />
@@ -24,3 +45,7 @@ export default function Ticket({ ticket }: Props) {
     </li>
   );
 }
+
+Ticket.defaultProps = {
+  isSkeleton: false,
+};

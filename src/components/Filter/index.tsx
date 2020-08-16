@@ -7,12 +7,12 @@ import { TOption } from "../../types/option";
 import "./style.css";
 
 type Props = {
-  activeOptions: string[];
+  value: string[];
   options: TOption[];
   onChange: (option: TOption) => void;
 };
 
-export default function Filter({ activeOptions, options, onChange }: Props) {
+export default function Filter({ value, options, onChange }: Props) {
   return (
     <div className="filter">
       <div className="filter__head">
@@ -22,7 +22,7 @@ export default function Filter({ activeOptions, options, onChange }: Props) {
         {options.map((option, id) => (
           <li key={id} className="filter__option">
             <Checkbox
-              checked={activeOptions.includes(option.value)}
+              checked={value.includes(option.value)}
               text={option.text}
               onChange={() => onChange(option)}
             />

@@ -1,22 +1,28 @@
 .ticket {
   display: grid;
-  grid-template: auto auto auto / 141px 141px 141px;
-  grid-template-areas:
-    "price . logo"
-    "route-from duration-from stops-from"
-    "route-to duration-to stops-to";
-  gap: 10px 20px;
+  grid-template-rows: auto auto auto;
+  row-gap: 10px;
 
-  padding: 26px 20px 20px;
+  padding: 20px;
+  margin-bottom: 20px;
 
   border-radius: 5px;
   background-color: white;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ticket:last-child {
+  margin-bottom: 0;
 }
 
 .ticket__header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 141px 141px 141px;
+  grid-template-areas: "price . logo";
+  column-gap: 20px;
+  align-items: center;
+
+  padding-bottom: 10px;
 }
 
 .ticket__price {
@@ -26,7 +32,10 @@
   text-transform: uppercase;
 
   color: #2196f3;
+
+  grid-area: price;
 }
 
 .ticket__logo {
+  grid-area: logo;
 }

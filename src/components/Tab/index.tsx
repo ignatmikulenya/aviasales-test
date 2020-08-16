@@ -4,23 +4,17 @@ import classnames from "classnames";
 import "./style.css";
 
 type Props = {
-  tabIndex: number;
-  activeTabIndex: number;
+  isActive: boolean;
   text: string;
   onClick: () => void;
 };
 
-export default function Tab({
-  tabIndex,
-  activeTabIndex,
-  text,
-  onClick,
-}: Props) {
+export default function Tab({ isActive, text, onClick }: Props) {
   return (
     <li
       onClick={onClick}
       className={classnames("tab", {
-        "tab--selected": tabIndex === activeTabIndex,
+        "tab--selected": isActive,
       })}
     >
       {text}

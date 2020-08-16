@@ -1,8 +1,8 @@
 .segment {
-  display: flex;
-  justify-content: space-between;
-
-  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 141px 141px 141px;
+  grid-template-areas: "route duration stops";
+  column-gap: 20px;
 }
 
 .segment:last-child {
@@ -24,4 +24,16 @@
 .segment-item__value {
   font-size: 14px;
   line-height: 21px;
+}
+
+.segment-item--route {
+  grid-area: route;
+}
+
+.segment-item--duration {
+  grid-area: duration;
+}
+
+.segment-item--stops {
+  grid-area: stops;
 }

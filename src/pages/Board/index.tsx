@@ -1,60 +1,49 @@
-import React, { useContext } from "react";
-import { observer } from "mobx-react";
+import React, { useEffect } from "react";
+import { useObserver } from "mobx-react";
 
-import { boardStoreContext } from "../../contexts/board-store-context";
+import { useBoardStore } from "../../providers/board-store-provider";
 
 import Filter from "../../components/Filter";
 import Tabs from "../../components/Tabs";
 import Tickets from "../../components/Tickets";
 
-import { TOption } from "../../types/option";
-
+import { STOPS_COUNT_OPTIONS, TICKET_TYPE_OPTIONS } from "../../constants";
 import { TicketType } from "../../enums";
 
 import "./style.css";
 
-const TICKET_TYPE_OPTIONS: TOption[] = [
-  { value: TicketType.Сheapest, text: "Самый дешевый" },
-  { value: TicketType.Fastest, text: "Самый быстрый" },
-];
-
-const FLIGHTS_COUNT_OPTIONS: TOption[] = [
-  { value: "all", text: "Все" },
-  { value: "0", text: "Без пересадок" },
-  { value: "1", text: "1 пересадка" },
-  { value: "2", text: "2 пересадки" },
-  { value: "3", text: "3 пересадки" },
-];
-
 function Board() {
-  const store = useContext(boardStoreContext);
+  const store = useBoardStore();
 
-  if (!store) {
-    return null;
-  }
+  useEffect(() => {
+    store.refreshData();
+  }, [store.ticketType, store.stopsCount.length]);
 
-  return (
-    <div className="board">
-      <div className="board__filter">
-        <Filter
-          activeOptions={store.flightsCount}
-          options={FLIGHTS_COUNT_OPTIONS}
-          onChange={({ value }) => store.handleSelectFlightsCount(value)}
-        />
+  return useObserver(() => {
+    return (
+      <div className="board">
+        <div className="board__filter">
+          <Filter
+            value={store.stopsCount}
+            options={STOPS_COUNT_OPTIONS}
+            onChange={({ value }) => store.handleSelectStopsCount(value)}
+          />
+        </div>
+        <div className="board__result">
+          <Tabs<TicketType>
+            value={store.ticketType}
+            options={TICKET_TYPE_OPTIONS}
+            onClick={({ value }) => store.handleSelectTicketType(value)}
+            className="board__tabs"
+          />
+          <Tickets
+            isSkeleton={store.isLoading}
+            tickets={store.filteredTickets}
+          />
+        </div>
       </div>
-      <div className="board__result">
-        <Tabs
-          selectedIndex={TICKET_TYPE_OPTIONS.findIndex(
-            (x) => x.value === store.ticketType
-          )}
-          options={TICKET_TYPE_OPTIONS}
-          onClick={({ value }) => store.handleSelectTicketType(value)}
-          className="board__tabs"
-        />
-        <Tickets tickets={store.tickets} />
-      </div>
-    </div>
-  );
+    );
+  });
 }
 
-export default observer(Board);
+export default Board;

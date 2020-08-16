@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-import { TBoardStore } from "../stores/board-store";
+import BoardStore from "../stores/board-store";
 
-export const boardStoreContext = createContext<TBoardStore | null>(null);
+export const boardStoreContext = createContext<BoardStore | null>(null);

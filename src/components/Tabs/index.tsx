@@ -7,26 +7,25 @@ import { TOption } from "../../types/option";
 
 import "./style.css";
 
-type Props = {
-  selectedIndex: number;
+type Props<T> = {
+  value: T;
   options: TOption[];
   onClick: (option: TOption) => void;
   className?: string;
 };
 
-export default function Tabs({
-  selectedIndex,
+export default function Tabs<T>({
+  value,
   options,
   onClick,
   className,
-}: Props) {
+}: Props<T>) {
   return (
     <ul className={classnames("tabs", className)}>
       {options.map((option, id) => (
         <Tab
           key={id}
-          tabIndex={id}
-          activeTabIndex={selectedIndex}
+          isActive={option.value === value}
           text={option.text}
           onClick={() => onClick(option)}
         />

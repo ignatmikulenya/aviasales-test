@@ -18,10 +18,10 @@ const getDuration = (date: string, duration: number): string => {
   if (interval.days) {
     durationParts.push(`${interval.days}д`);
   }
-  if (interval.days) {
+  if (interval.hours) {
     durationParts.push(`${interval.hours}ч`);
   }
-  if (interval.days) {
+  if (interval.minutes) {
     durationParts.push(`${interval.minutes}с`);
   }
 
