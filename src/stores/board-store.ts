@@ -1,4 +1,10 @@
-import { observable, action, runInAction } from "mobx";
+import {
+  observable,
+  action,
+  runInAction,
+  reaction,
+  IReactionDisposer,
+} from "mobx";
 
 import ITicket from "../api-interfaces/ticket";
 
@@ -17,15 +23,13 @@ export default class BoardStore {
 
   @observable isLoading: boolean;
 
+  private ticketTypeDisposer: IReactionDisposer;
+  private stopsCountDisposer: IReactionDisposer;
+
   constructor() {
     this.ticketsService = new TicketsService();
 
-    this.stopsCount = DEFAULT_FILTER_VALUES;
-    this.ticketType = TicketType.Сheapest;
-    this.tickets = [];
-    this.filteredTickets = [];
-
-    this.isLoading = false;
+    this.resetData();
   }
 
   @action setIsLoading = (value: boolean): void => {
@@ -128,5 +132,33 @@ export default class BoardStore {
     this.fetchTickets().then(() =>
       this.setFilteredTickets(this.getFilteredTickets())
     );
+  };
+
+  resetData = () => {
+    this.stopsCount = DEFAULT_FILTER_VALUES;
+    this.ticketType = TicketType.Сheapest;
+    this.tickets = [];
+    this.filteredTickets = [];
+    this.isLoading = false;
+  };
+
+  init = (): void => {
+    this.resetData();
+
+    this.ticketTypeDisposer = reaction(
+      () => this.ticketType,
+      () => this.refreshData()
+    );
+    this.stopsCountDisposer = reaction(
+      () => this.stopsCount.length,
+      () => this.refreshData()
+    );
+
+    this.refreshData();
+  };
+
+  dispose = (): void => {
+    this.ticketTypeDisposer();
+    this.stopsCountDisposer();
   };
 }

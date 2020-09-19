@@ -16,8 +16,9 @@ function Board() {
   const store = useBoardStore();
 
   useEffect(() => {
-    store.refreshData();
-  }, [store.ticketType, store.stopsCount.length]);
+    store.init();
+    return () => store.dispose();
+  }, []);
 
   return useObserver(() => {
     return (
